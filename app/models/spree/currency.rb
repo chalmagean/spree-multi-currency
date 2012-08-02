@@ -36,6 +36,8 @@ module Spree
 
       # Get the current locale
       def current( current_locale = nil )
+        # don't reload currency based on locale if we already have a currency
+        return @current unless @current.nil?
         @current ||= locale(current_locale || I18n.locale).first
       end
 
